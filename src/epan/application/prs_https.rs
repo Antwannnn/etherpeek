@@ -1,0 +1,22 @@
+use crate::epan::protocol_dissector::ProtocolDissector;
+use crate::epan::protocol_result::ProtocolDissectResult;
+use crate::io::packet_buffer::PktBuf;
+
+pub struct HTTPSDissector {name: &'static str
+         }
+
+impl HTTPSDissector {
+    pub fn new() -> Self {
+        HTTPSDissector { 
+         name: "HTTPS"}
+        }
+    }
+
+impl ProtocolDissector for HTTPSDissector {
+    fn protocol_dissector(&self, buffer: &PktBuf) -> ProtocolDissectResult {
+        todo!("Implement parser for https")
+    }
+    
+    fn name(&self) -> &'static str{self.name}
+
+}

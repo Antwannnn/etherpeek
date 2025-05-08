@@ -1,0 +1,11 @@
+[package]
+name = "Etherpeek"
+version = "0.1.0"
+authors = ["Antoine Leboucher"]
+edition = "2021"
+
+[dependencies]
+pcap = "1.1"
+clap = { version = "4", features = ["derive"] }
+whoami = "1.2"
+byteorder = "1.4"
