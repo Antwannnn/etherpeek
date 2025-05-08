@@ -22,6 +22,10 @@ impl ProtocolDissector for TCPDissector {
         todo!("Implement parser for tcp")
     }
 
+    fn can_dissect(&self, buffer: &PktBuf) -> bool {
+        todo!()
+    }
+
     fn name(&self) -> &'static str {
         self.name
     }

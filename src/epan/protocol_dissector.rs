@@ -7,6 +7,8 @@ pub trait ProtocolDissector {
     /// Parses the given packet buffer. The implementation is expected to
     /// either fully handle or dispatch to the appropriate next-layer parser.
     fn protocol_dissector(&self, buffer: &PktBuf) -> ProtocolDissectResult;
+    
+    fn can_dissect(&self, buffer: &PktBuf) -> bool;
 
     /// Returns the protocol name (useful for debugging/logging).
     fn name(&self) -> &'static str;

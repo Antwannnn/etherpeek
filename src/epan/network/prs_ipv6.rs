@@ -36,6 +36,10 @@ impl ProtocolDissector for IPV6Dissector {
         ))
     }
 
+    fn can_dissect(&self, buffer: &PktBuf) -> bool {
+        todo!()
+    }
+
     fn name(&self) -> &'static str {
         self.name
     }

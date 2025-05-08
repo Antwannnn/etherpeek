@@ -22,6 +22,10 @@ impl ProtocolDissector for UDPDissector {
         todo!("Implement parser for udp")
     }
 
+    fn can_dissect(&self, buffer: &PktBuf) -> bool {
+        todo!()
+    }
+
     fn name(&self) -> &'static str {
         self.name
     }

@@ -19,6 +19,10 @@ impl ProtocolDissector for IPXDissector {
         todo!("Implement parser for ipx")
     }
 
+    fn can_dissect(&self, buffer: &PktBuf) -> bool {
+        todo!()
+    }
+
     fn name(&self) -> &'static str{
         self.name
     }

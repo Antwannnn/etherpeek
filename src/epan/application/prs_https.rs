@@ -16,7 +16,11 @@ impl ProtocolDissector for HTTPSDissector {
     fn protocol_dissector(&self, buffer: &PktBuf) -> ProtocolDissectResult {
         todo!("Implement parser for https")
     }
-    
+
+    fn can_dissect(&self, buffer: &PktBuf) -> bool {
+        todo!()
+    }
+
     fn name(&self) -> &'static str{self.name}
 
 }

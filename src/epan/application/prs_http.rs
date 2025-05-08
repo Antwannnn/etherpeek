@@ -29,6 +29,10 @@ impl ProtocolDissector for HTTPDissector {
         todo!("Implement parser for http")
     }
 
+    fn can_dissect(&self, buffer: &PktBuf) -> bool {
+        todo!()
+    }
+
     fn name(&self) -> &'static str {
         self.name
     }

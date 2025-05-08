@@ -29,6 +29,10 @@ impl ProtocolDissector for IEEE802_3Dissector {
         todo!("Implement parser for ieee802.3@")
     }
 
+    fn can_dissect(&self, buffer: &PktBuf) -> bool {
+        todo!()
+    }
+
     fn name(&self) -> &'static str {
         self.name
     }

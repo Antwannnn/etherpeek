@@ -16,7 +16,11 @@ impl ProtocolDissector for DNSDissector {
     fn protocol_dissector(&self, buffer: &PktBuf) -> ProtocolDissectResult {
         todo!("Implement parser for dns")
     }
-    
+
+    fn can_dissect(&self, buffer: &PktBuf) -> bool {
+        todo!()
+    }
+
     fn name(&self) -> &'static str{self.name}
 
 }

@@ -29,6 +29,10 @@ impl ProtocolDissector for SSHDissector {
         todo!("Implement parser for ssh")
     }
 
+    fn can_dissect(&self, buffer: &PktBuf) -> bool {
+        todo!()
+    }
+
     fn name(&self) -> &'static str {
         self.name
     }
