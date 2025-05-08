@@ -11,6 +11,9 @@ use crate::epan::protocol_dissector::ProtocolDissector;
 use crate::epan::session::SSHDissector;
 use crate::epan::transport::*;
 
+/// Here not that the order with which you place the dissectors is important
+/// because for now, the dissector will be, in the first place, called sequentially
+
 pub fn get_physical_layer_parsers() -> Vec<Box<dyn ProtocolDissector>> {
     vec![
         Box::new(IEEE802_3Dissector::new()),

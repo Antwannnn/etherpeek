@@ -23,7 +23,7 @@ impl ProtocolDissector for IEEE802_3Dissector {
 
     /**
     This represents the main function where the buffer of data is going to be analyzed
-    to determine which protocol is 
+    to determine and extracts all the fields of a protocol on buffer of data
     **/
     fn protocol_dissector(&self, buffer: &PktBuf) -> ProtocolDissectResult {
         todo!("Implement parser for ieee802.3@")
