@@ -53,7 +53,7 @@ pub fn read_cap_file(path: String) -> Vec<PktBuf> {
 pub fn call_cascading_dissector(buffer: &PktBuf) -> ProtoTree {
     let mut prototree = ProtoTree::new();
     get_physical_layer_parsers().iter_mut().for_each(|dissector| {
-        dissector.protocol_dissector(buffer, &mut prototree);
+        dissector.protocol_dissector(buffer, &mut prototree, None);
     });
 
     prototree

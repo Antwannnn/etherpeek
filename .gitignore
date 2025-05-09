@@ -1,5 +1,5 @@
 target
 /target
-.gitignore
 Cargo.lock
 captures
+**/.DS_Store

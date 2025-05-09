@@ -1,11 +1,12 @@
 use std::collections::HashMap;
 use std::fmt::{Display, Formatter};
 
+
 pub struct ProtoTreeNode {
     pub name: String,
-    
+
     pub children: Vec<ProtoTreeNode>,
-    
+
     pub proto_infos: HashMap<String, String>
 }
 

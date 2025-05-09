@@ -1,4 +1,5 @@
 use crate::epan::proto_tree::ProtoTree;
+use crate::epan::proto_tree_node::ProtoTreeNode;
 use crate::epan::protocol_dissector::ProtocolDissector;
 use crate::epan::protocol_result::ProtocolDissectResult;
 use crate::io::packet_buffer::PktBuf;
@@ -14,7 +15,7 @@ impl HTTPSDissector {
     }
 
 impl ProtocolDissector for HTTPSDissector {
-    fn protocol_dissector(&mut self, buffer: &PktBuf, prototree: &mut ProtoTree) -> ProtocolDissectResult {
+    fn protocol_dissector(&mut self, buffer: &PktBuf, prototree: &mut ProtoTree, parent_node: Option<&mut ProtoTreeNode>) -> ProtocolDissectResult {
         todo!("Implement parser for https")
     }
 

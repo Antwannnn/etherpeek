@@ -1,33 +1,29 @@
-use std::collections::HashMap;
-use crate::epan::osi::OsiLayer;
 use crate::epan::proto_tree::ProtoTree;
 use crate::epan::proto_tree_node::ProtoTreeNode;
 use crate::epan::protocol_dissector::ProtocolDissector;
 use crate::epan::protocol_result::ProtocolDissectResult;
 use crate::io::packet_buffer::PktBuf;
 
-pub struct TCPDissector {
+pub struct ARPDissector {
     name: &'static str
 }
 
-impl TCPDissector {
+impl ARPDissector {
     pub fn new() -> Self {
-        TCPDissector {
-            name: "TCP"
-        }
+        ARPDissector {
+            name: "ARP"}
     }
 }
 
-impl ProtocolDissector for TCPDissector {
+impl ProtocolDissector for ARPDissector {
     fn protocol_dissector(&mut self, buffer: &PktBuf, prototree: &mut ProtoTree, parent_node: Option<&mut ProtoTreeNode>) -> ProtocolDissectResult {
-        todo!("Implement parser for tcp")
+        todo!("Implement parser for arp")
     }
 
     fn can_dissect(&self, buffer: &PktBuf) -> bool {
         todo!()
     }
 
-    fn name(&self) -> &'static str {
-        self.name
-    }
+    fn name(&self) -> &'static str{self.name}
+
 }

@@ -17,6 +17,7 @@ pub fn generate_protocol_file(args: DissectorGenArgs){
     let parser_code = format!(
         "use crate::epan::protocol_dissector::ProtocolDissector;\n\
          use crate::epan::protocol_result::ProtocolDissectResult;\n\
+         use crate::epan::proto_tree::ProtoTree;\n\
          use crate::io::packet_buffer::PktBuf;\n\n\
          pub struct {parser_struct} {{\
             name: &'static str
@@ -25,8 +26,12 @@ pub fn generate_protocol_file(args: DissectorGenArgs){
              pub fn new() -> Self {{\n{parser_struct} {{ \n name: \"{uppercase_protocol}\"}}\n\
              }}\n\
          }}\n\n\
+
+        fn can_dissect(&self, buffer: &PktBuf) -> bool {{
+            todo!()
+        }}\n\n\
          impl ProtocolDissector for {parser_struct} {{\n\
-             fn protocol_dissector(&self, buffer: &PktBuf) -> ProtocolDissectResult {{\n\
+             fn protocol_dissector(&mut self, buffer: &PktBuf, prototree: &mut ProtoTree) -> ProtocolDissectResult {{\n\
                  todo!(\"Implement parser for {protocol_name}\")\n\
              }}\n\n\
              fn name(&self) -> &'static str{{self.name}}\n\n\
@@ -72,5 +77,5 @@ pub fn generate_protocol_file(args: DissectorGenArgs){
 
     fs::write(layer_parser_path, contents).expect("Failed to update layer_parsers.rs");
 
-    println!("✅ Added {} dissector to {} layer! You can find it at etherpeek/src/epan/{}/{}.rs", protocol_name, args.layer, args.layer, protocol_name);
+    println!("✅ Added {} dissector to {} layer! You can find it at etherpeek/src/epan/{}/prs_{}.rs", protocol_name, args.layer, args.layer, protocol_name);
 }

@@ -12,6 +12,20 @@ impl ProtoTree {
             nodes: Vec::new(),
         }
     }
+    pub fn insert_node<'a>(
+        &'a mut self,
+        node: ProtoTreeNode,
+        parent: Option<&'a mut ProtoTreeNode>
+    ) -> &'a mut ProtoTreeNode {
+        if let Some(parent_node) = parent {
+            parent_node.children.push(node);
+            parent_node.children.last_mut().unwrap()
+        } else {
+            self.nodes.push(node);
+            self.nodes.last_mut().unwrap()
+        }
+    }
+
 }
 
 impl Display for ProtoTree {

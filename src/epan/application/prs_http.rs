@@ -1,4 +1,5 @@
 use crate::epan::proto_tree::ProtoTree;
+use crate::epan::proto_tree_node::ProtoTreeNode;
 use crate::epan::protocol_dissector::ProtocolDissector;
 use crate::epan::protocol_result::ProtocolDissectResult;
 use crate::io::packet_buffer::PktBuf;
@@ -23,7 +24,7 @@ impl ProtocolDissector for HTTPDissector {
     This represents the main function where the buffer of data is going to be analyzed
     to determine which protocol is
     **/
-    fn protocol_dissector(&mut self, buffer: &PktBuf, prototree: &mut ProtoTree) -> ProtocolDissectResult {
+    fn protocol_dissector(&mut self, buffer: &PktBuf, prototree: &mut ProtoTree, parent_node: Option<&mut ProtoTreeNode>) -> ProtocolDissectResult {
         todo!("Implement parser for http")
     }
 

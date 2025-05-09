@@ -57,6 +57,21 @@ impl PktBuf {
             .get(start..start + len)
             .ok_or_else(|| format!("Requested byte range {}..{} is out of bounds", start, start + len))
     }
+    
+    pub fn sub_buf(&self, start: usize) -> Option<Self> {
+        if start >= self.buf.len() {
+            return None;
+        }
+        let new_buf = self.buf[start..].to_vec();
+        let new_packet = Peek {
+            timestamp: self.timestamp,
+            length: new_buf.len() as u16,
+            format: self.format.clone(),
+            packet_id: self.packet_id,
+            buf: new_buf,
+        };
+        Some(PktBuf::new(new_packet))
+    }
 
     pub fn rep_len_remaining(&self, position: usize) -> Option<u16> {
         if position > self.buf.len(){
