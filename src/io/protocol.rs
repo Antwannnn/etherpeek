@@ -1,5 +1,6 @@
 use crate::epan::osi::OsiLayer;
 use std::collections::HashMap;
+use std::fmt::{format, Display, Formatter};
 
 pub struct Protocol {
     pub name: String,
@@ -19,6 +20,7 @@ impl Protocol{
                raw_data: Vec<u8>,
                header_len: usize
     ) -> Self {
+        println!("creating protocol {name}");
         Protocol{
             name,
             layer,
@@ -30,5 +32,20 @@ impl Protocol{
     }
     pub fn payload_offset(&self) -> usize {
         self.raw_data.len() - self.header_len
+    }
+}
+
+impl Display for Protocol {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let name = &self.name;
+        let header_len = &self.header_len;
+        let id = &self.identifier.unwrap();
+        let layer = &self.layer.as_str();
+        let str = format!("------ Protocol: {name} ------\n\
+                Header Length: {header_len} \n\
+                Identifier: {id} \n\
+                Layer: {layer} \n\
+                ").to_string();
+        write!(f, "{}", str)
     }
 }

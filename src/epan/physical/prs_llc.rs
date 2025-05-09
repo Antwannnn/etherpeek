@@ -1,5 +1,7 @@
+use crate::epan::parse_error::ParseError::UnsupportedProtocol;
 use crate::epan::protocol_dissector::ProtocolDissector;
 use crate::epan::protocol_result::ProtocolDissectResult;
+use crate::epan::protocol_result::ProtocolDissectResult::Error;
 use crate::io::packet_buffer::PktBuf;
 
 pub struct LLCDissector {
@@ -16,7 +18,7 @@ impl LLCDissector {
 
 impl ProtocolDissector for LLCDissector {
     fn protocol_dissector(&self, buffer: &PktBuf) -> ProtocolDissectResult {
-        todo!("Implement parser for llc")
+        Error(UnsupportedProtocol)
     }
 
     fn can_dissect(&self, buffer: &PktBuf) -> bool {
