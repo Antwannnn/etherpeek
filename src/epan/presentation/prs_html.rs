@@ -1,10 +1,10 @@
 use std::collections::HashMap;
 use std::io::Error;
 use crate::epan::osi::OsiLayer;
+use crate::epan::proto_tree::ProtoTree;
 use crate::epan::protocol_dissector::ProtocolDissector;
 use crate::epan::protocol_result::ProtocolDissectResult;
 use crate::io::packet_buffer::PktBuf;
-use crate::io::protocol::Protocol;
 
 pub struct HTMLDissector {
 
@@ -26,7 +26,7 @@ impl ProtocolDissector for HTMLDissector {
     This represents the main function where the buffer of data is going to be analyzed
     to determine which protocol is 
     **/
-    fn protocol_dissector(&self, buffer: &PktBuf) -> ProtocolDissectResult {
+    fn protocol_dissector(&mut self, buffer: &PktBuf, prototree: &mut ProtoTree) -> ProtocolDissectResult {
         todo!("Implement parser for html")
     }
 

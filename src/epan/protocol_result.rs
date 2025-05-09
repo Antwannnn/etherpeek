@@ -1,9 +1,8 @@
 use std::fmt::Display;
 use crate::epan::parse_error::ParseError;
-use crate::io::protocol::Protocol;
 
 pub enum ProtocolDissectResult {
-    Parsed(Protocol),
+    Parsed,
     NeedsMoreData,
     Unsupported,
     Error(ParseError),

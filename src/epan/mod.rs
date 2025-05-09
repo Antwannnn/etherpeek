@@ -2,6 +2,10 @@ pub mod protocol_dissector;
 pub mod layer_parsers;
 pub mod osi;
 pub mod peek_reader;
+pub mod sub_dissector_caller;
+
+pub mod proto_tree_node;
+pub mod proto_tree;
 
 
 /// OSI Layer and their protocol parser

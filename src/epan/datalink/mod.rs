@@ -1,3 +1,3 @@
-pub mod prs_ieee802_3_frame;
+pub mod prs_ieee8023_frame;
 
-pub use prs_ieee802_3_frame::IEEE802_3FrameDissector;
+pub use prs_ieee8023_frame::IEEE8023FrameDissector;

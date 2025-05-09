@@ -1,6 +1,8 @@
 use std::fs::File;
 use std::io::{BufReader, Read};
 use crate::epan::layer_parsers::get_physical_layer_parsers;
+use crate::epan::proto_tree::ProtoTree;
+use crate::epan::proto_tree_node;
 use crate::epan::protocol_result::ProtocolDissectResult;
 use crate::io::packet_buffer::PktBuf;
 use crate::io::peek::peek::Peek;
@@ -35,8 +37,9 @@ pub fn read_cap_file(path: String) -> Vec<PktBuf> {
             Ok(peek_pkt) => {
                 println!("{}", peek_pkt.to_string());
                 let pkt_buf = PktBuf::new(peek_pkt);
-                call_dissector_in_order(&pkt_buf);
+                let proto_tree_node = call_cascading_dissector(&pkt_buf);
                 packets.push(pkt_buf);
+                println!("{}", proto_tree_node)
             }
             Err(e) => {
                 eprintln!("Failed to parse Peek packet");
@@ -47,12 +50,11 @@ pub fn read_cap_file(path: String) -> Vec<PktBuf> {
     packets
 }
 
-pub fn call_dissector_in_order(buffer: &PktBuf){
-        /// Test for ethernet dissector 
-        get_physical_layer_parsers().iter().for_each(|dissector| {
-            match dissector.protocol_dissector(buffer) {
-                ProtocolDissectResult::Parsed(parsed) => println!("Parsed {parsed}"),
-                ProtocolDissectResult::NeedsMoreData | ProtocolDissectResult::Unsupported | ProtocolDissectResult::Error(_) => println!("")
-            }
-        })
+pub fn call_cascading_dissector(buffer: &PktBuf) -> ProtoTree {
+    let mut prototree = ProtoTree::new();
+    get_physical_layer_parsers().iter_mut().for_each(|dissector| {
+        dissector.protocol_dissector(buffer, &mut prototree);
+    });
+
+    prototree
 }

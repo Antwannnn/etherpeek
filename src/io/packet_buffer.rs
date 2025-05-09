@@ -40,7 +40,7 @@ impl PktBuf {
         }
 
         let bytes = &self.packet.buf[offset..offset + 4];
-        Some(u32::from_le_bytes([bytes[0], bytes[1], bytes[2], bytes[3]])) // or from_be_bytes depending on endianness
+        Some(u32::from_be_bytes([bytes[0], bytes[1], bytes[2], bytes[3]])) // or from_be_bytes depending on endianness
     }
 
     pub fn read_next_u64(&self, offset: usize) -> Option<u64> {
@@ -49,7 +49,7 @@ impl PktBuf {
         }
 
         let bytes = &self.packet.buf[offset..offset + 8];
-        Some(u64::from_le_bytes([bytes[0], bytes[1], bytes[2], bytes[3], bytes[4], bytes[5], bytes[6], bytes[7]])) // or from_be_bytes depending on endianness
+        Some(u64::from_be_bytes([bytes[0], bytes[1], bytes[2], bytes[3], bytes[4], bytes[5], bytes[6], bytes[7]])) // or from_be_bytes depending on endianness
     }
 
     pub fn byte_range_checked(&self, start: usize, len: usize) -> Result<&[u8], String> {

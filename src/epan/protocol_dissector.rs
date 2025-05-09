@@ -1,3 +1,4 @@
+use crate::epan::proto_tree::ProtoTree;
 use crate::epan::protocol_result::ProtocolDissectResult;
 use crate::io::packet_buffer::PktBuf;
 
@@ -6,7 +7,7 @@ use crate::io::packet_buffer::PktBuf;
 pub trait ProtocolDissector {
     /// Parses the given packet buffer. The implementation is expected to
     /// either fully handle or dispatch to the appropriate next-layer parser.
-    fn protocol_dissector(&self, buffer: &PktBuf) -> ProtocolDissectResult;
+    fn protocol_dissector(&mut self, buffer: &PktBuf, prototree: &mut ProtoTree) -> ProtocolDissectResult;
     
     fn can_dissect(&self, buffer: &PktBuf) -> bool;
 

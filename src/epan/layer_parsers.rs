@@ -3,7 +3,7 @@ use crate::epan::application::prs_dns::DNSDissector;
 use crate::epan::physical::prs_ipx::IPXDissector;
 use crate::epan::physical::prs_llc::LLCDissector;
 use crate::epan::application::HTTPDissector;
-use crate::epan::datalink::IEEE802_3FrameDissector;
+use crate::epan::datalink::IEEE8023FrameDissector;
 use crate::epan::network::{IPV4Dissector, IPV6Dissector};
 use crate::epan::physical::*;
 use crate::epan::presentation::{HTMLDissector, TLSDissector};
@@ -16,7 +16,7 @@ use crate::epan::transport::*;
 
 pub fn get_physical_layer_parsers() -> Vec<Box<dyn ProtocolDissector>> {
     vec![
-        Box::new(IEEE802_3Dissector::new()),
+        Box::new(Ieee8023EthernetDissector::new()),
         Box::new(LLCDissector::new()),
         Box::new(IPXDissector::new()),
    ]
@@ -24,7 +24,7 @@ pub fn get_physical_layer_parsers() -> Vec<Box<dyn ProtocolDissector>> {
 
 pub fn get_datalink_layer_parsers() -> Vec<Box<dyn ProtocolDissector>> {
     vec![
-        Box::new(IEEE802_3FrameDissector::new()),
+        Box::new(IEEE8023FrameDissector::new()),
     ]
 }
 

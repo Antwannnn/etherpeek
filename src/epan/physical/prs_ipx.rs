@@ -1,4 +1,5 @@
 use crate::epan::parse_error::ParseError::UnsupportedProtocol;
+use crate::epan::proto_tree::ProtoTree;
 use crate::epan::protocol_dissector::ProtocolDissector;
 use crate::epan::protocol_result::ProtocolDissectResult;
 use crate::epan::protocol_result::ProtocolDissectResult::Error;
@@ -17,7 +18,7 @@ impl IPXDissector {
 }
 
 impl ProtocolDissector for IPXDissector {
-    fn protocol_dissector(&self, buffer: &PktBuf) -> ProtocolDissectResult {
+    fn protocol_dissector(&mut self, buffer: &PktBuf, prototree: &mut ProtoTree) -> ProtocolDissectResult {
         Error(UnsupportedProtocol)
     }
 

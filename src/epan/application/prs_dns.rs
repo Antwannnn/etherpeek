@@ -1,3 +1,4 @@
+use crate::epan::proto_tree::ProtoTree;
 use crate::epan::protocol_dissector::ProtocolDissector;
 use crate::epan::protocol_result::ProtocolDissectResult;
 use crate::io::packet_buffer::PktBuf;
@@ -13,7 +14,7 @@ impl DNSDissector {
 }
 
 impl ProtocolDissector for DNSDissector {
-    fn protocol_dissector(&self, buffer: &PktBuf) -> ProtocolDissectResult {
+    fn protocol_dissector(&mut self, buffer: &PktBuf, prototree: &mut ProtoTree) -> ProtocolDissectResult {
         todo!("Implement parser for dns")
     }
 
